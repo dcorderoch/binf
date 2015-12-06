@@ -12,15 +12,15 @@ OBJ := $(patsubst %,$(ODIR)/%,$(_OBJ))
 EXE := binf
 
 CC := gcc
-CFLAGS := -O3
+CFLAGS := -O2 -W -Wall -g
 
 all : $(EXE)
 
 $(EXE) : $(OBJ)
-	$(CC) $(OBJ) -o $(EXE) $(CFLAGS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(EXE)
 $(ODIR)/%.o : $(SDIR)/%.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 .PHONY : clean
 clean:
 	rm -f $(OBJ) $(EXE)
-.PHONY : run
